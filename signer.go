@@ -93,6 +93,7 @@ func makeQueryString(url string, expires int64, signOptions SignOptions) string 
 
 func makeSignature(url string, expires int64, options SignOptions) string {
 	stringToSign := makeStringToSign(url, expires, options)
+
 }
 
 // makeStringToSign(url, expires, options) {
