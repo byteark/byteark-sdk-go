@@ -2,8 +2,9 @@ package bytearksigner
 
 import (
 	"crypto/md5"
-	"encoding/hex"
+	"encoding/base64"
 	"fmt"
+	"regexp"
 	"time"
 )
 
@@ -117,7 +118,13 @@ func makeStringToSign(url string, expires int64, options SignOptions) string {
 func hashMD5(str string) string {
 	hasher := md5.New()
 	hasher.Write([]byte(str))
-	return hex.EncodeToString(hasher.Sum(nil))
+	hashed := base64.StdEncoding.EncodeToString(hasher.Sum(nil))
+
+	hashed = regexp.MustCompile(`/\+/g`).ReplaceAllString(hashed, "-")
+	hashed = regexp.MustCompile(`/\//g`).ReplaceAllString(hashed, "_")
+	hashed = regexp.MustCompile(`/=+$/`).ReplaceAllString(hashed, "")
+
+	return hashed
 }
 
 // makeSignature(url, expires, options) {
