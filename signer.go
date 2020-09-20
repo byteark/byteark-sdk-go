@@ -124,7 +124,7 @@ func (s *Signer) GetDefaultAge() int {
 	return s.DefaultAge
 }
 
-func makeQueryParams(url string, expires int, options SignOptions) *map[string]string {
+func makeQueryParams(url string, expires int, options SignOptions) map[string]string {
 	signer := CurrentSigner()
 
 	var queryParams map[string]string
@@ -156,7 +156,7 @@ func makeQueryParams(url string, expires int, options SignOptions) *map[string]s
 	// }
 
 	// TODO: sort query params
-	return &queryParams
+	return queryParams
 }
 
 func changeKeyToXArkKey(key string) string {
