@@ -83,7 +83,7 @@ func (s Signer) Verify(url string, now int) (bool, error) {
 		return false, errors.New("Invalid signed URL condition")
 	}
 
-	var options := make(map[string]string)
+	var options = make(map[string]string)
 	for key := range parsedQuery {
 		if shouldQueryExistsInOptions(key) {
 			options[trimKey(key)] = parsedQuery.Get(key)
