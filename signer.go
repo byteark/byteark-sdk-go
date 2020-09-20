@@ -83,7 +83,7 @@ func (s Signer) Verify(url string, now int) (bool, error) {
 		return false, errors.New("Invalid signed URL condition")
 	}
 
-	var options map[string]string
+	var options := make(map[string]string)
 	for key := range parsedQuery {
 		if shouldQueryExistsInOptions(key) {
 			options[trimKey(key)] = parsedQuery.Get(key)
@@ -127,7 +127,7 @@ func (s *Signer) GetDefaultAge() int {
 func makeQueryParams(url string, expires int, options SignOptions) map[string]string {
 	signer := CurrentSigner()
 
-	var queryParams map[string]string
+	var queryParams = make(map[string]string)
 
 	queryParams["x_ark_access_id"] = signer.AccessID
 	queryParams["x_ark_auth_type"] = "ark-v2"
@@ -217,7 +217,7 @@ func makeStringToSign(url string, expires int, options SignOptions) string {
 }
 
 func makeCustomPolicyLines(options SignOptions) []string {
-	var op map[string]string
+	var op = make(map[string]string)
 	for key, value := range options {
 		if shouldOptionExistsInCustomPolicyLine(key) {
 			op[key] = value
