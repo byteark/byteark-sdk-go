@@ -106,7 +106,7 @@ func (s *Signer) SetAccessID(accessID string) {
 
 // SetAccessSecret set AccessSecret to signer
 func (s *Signer) SetAccessSecret(accessSecret string) {
-	s.AccessID = accessSecret
+	s.AccessSecret = accessSecret
 }
 
 // SetDefaultAge set DefaultAge as assign value to signer
