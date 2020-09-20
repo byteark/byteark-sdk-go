@@ -2,10 +2,12 @@ package bytearksigner
 
 import (
 	"errors"
+	"fmt"
 )
 
 // CreateSigner create new signer for further use.
 func CreateSigner(options SignerOptions) error {
+	fmt.Println("created")
 	signer := CurrentSigner()
 
 	signer.SetAccessID(options.AccessID)
