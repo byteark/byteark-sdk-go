@@ -31,7 +31,7 @@ func Sign(url string, expires int, options SignOptions) (string, error) {
 }
 
 // Verify signedurl
-func Verify(url string, now int) {
+func Verify(url string, now int) (bool, error) {
 	signer := CurrentSigner()
 
 	bo, err := signer.Verify(url, now)
@@ -39,4 +39,6 @@ func Verify(url string, now int) {
 	if !bo {
 		fmt.Printf("%e", err)
 	}
+
+	return bo, err
 }
