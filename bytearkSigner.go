@@ -24,7 +24,7 @@ func CreateSigner(options SignerOptions) error {
 }
 
 // Sign exact sign function to call
-func Sign(url string, expires int, options SignOptions) string, error {
+func Sign(url string, expires int, options SignOptions) (string, error) {
 	signer := CurrentSigner()
 
 	return signer.Sign(url, expires, options)
