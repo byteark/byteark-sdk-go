@@ -14,7 +14,7 @@ import (
 	"github.com/pasztorpisti/qs"
 )
 
-// Signer struct for class.
+// Signer struct for Signer class.
 type Signer struct {
 	AccessID        string
 	AccessSecret    string
@@ -29,9 +29,7 @@ type SignerOptions struct {
 	DefaultAge   int
 }
 
-type signQuery map[string]string
-
-// SignOptions ..
+// SignOptions for query params inside signedURL
 type SignOptions map[string]string
 
 var currentSigner = newSigner()
@@ -51,20 +49,22 @@ func CurrentSigner() *Signer {
 }
 
 // Sign is main feature function for signer.
-func (s Signer) Sign(url string, expires int, options SignOptions) string {
+func (s Signer) Sign(url string, expires int, options SignOptions) (string, error) {
 	if expires == 0 {
 		defaultAge, _ := time.ParseDuration(fmt.Sprintf("%ds", s.GetDefaultAge()))
 		expires = int(time.Now().Add(defaultAge).Unix())
 	}
 
-	// qs is not usable due to un predictable query params led to no struct structure defined.
-	// TODO: Write custom qs function ps. sort before use
-	queryParams, _ := qs.Marshal(makeQueryParams(url, expires, options))
+	queryParams, marshalError := qs.Marshal(makeQueryParams(url, expires, options))
 
-	return fmt.Sprintf("%s?%s", url, queryParams) // s.AccessID + s.AccessSecret
+	if marshalError != nil {
+		return "", marshalError
+	}
+
+	return fmt.Sprintf("%s?%s", url, queryParams), nil
 }
 
-// Verify ..
+// Verify signed url
 func (s Signer) Verify(url string, now int) (bool, error) {
 	if now == 0 {
 		now = int(time.Now().Unix())
@@ -146,16 +146,6 @@ func makeQueryParams(url string, expires int, options SignOptions) map[string]st
 		keys = append(keys, k)
 	}
 
-	// Use less sort attemp here, since map cannot be sort
-	// sort.Strings(keys)
-
-	// var sortedQueryParams map[string]string
-
-	// for _, k := range keys {
-	// 	sortedQueryParams[k] = queryParams[k]
-	// }
-
-	// TODO: sort query params
 	return queryParams
 }
 

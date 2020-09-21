@@ -2,6 +2,7 @@ package bytearksigner
 
 import (
 	"errors"
+	"fmt"
 )
 
 // CreateSigner create new signer for further use.
@@ -23,8 +24,19 @@ func CreateSigner(options SignerOptions) error {
 }
 
 // Sign exact sign function to call
-func Sign(url string, expires int, options SignOptions) string {
+func Sign(url string, expires int, options SignOptions) string, error {
 	signer := CurrentSigner()
 
 	return signer.Sign(url, expires, options)
+}
+
+// Verify signedurl
+func Verify(url string, now int) {
+	signer := CurrentSigner()
+
+	bo, err := signer.Verify(url, now)
+
+	if !bo {
+		fmt.Printf("%e", err)
+	}
 }
