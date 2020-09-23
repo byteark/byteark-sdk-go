@@ -127,6 +127,8 @@ func (s *Signer) GetDefaultAge() int {
 func makeQueryParams(url string, expires int, options SignOptions) map[string]string {
 	signer := CurrentSigner()
 
+	options = validateSignOptions(&options)
+
 	var queryParams = make(map[string]string)
 
 	queryParams["x_ark_access_id"] = signer.AccessID
@@ -136,7 +138,11 @@ func makeQueryParams(url string, expires int, options SignOptions) map[string]st
 
 	for key, value := range options {
 		if shouldOptionsExistsInQuery(key) {
-			queryParams[changeKeyToXArkKey(key)] = value
+			if shouldOptionValueExistsInQuery(key) {
+				queryParams[changeKeyToXArkKey(key)] = value
+			} else {
+				queryParams[changeKeyToXArkKey(key)] = "1"
+			}
 		}
 	}
 
@@ -149,10 +155,20 @@ func makeQueryParams(url string, expires int, options SignOptions) map[string]st
 	return queryParams
 }
 
+func validateSignOptions(s *SignOptions) SignOptions {
+	ns := make(map[string]string)
+	for key, value := range *s {
+		validKey := strings.ReplaceAll(key, "-", "_")
+		ns[validKey] = value
+	}
+	return ns
+}
+
 func changeKeyToXArkKey(key string) string {
 	if strings.HasPrefix(key, "x_ark_") {
 		return key
 	}
+	key = strings.ReplaceAll(key, "-", "_")
 	return fmt.Sprintf("x_ark_%s", key)
 }
 
@@ -161,7 +177,7 @@ func shouldOptionsExistsInQuery(optionKey string) bool {
 }
 
 func shouldOptionValueExistsInQuery(key string) bool {
-	return key != "client_ip" && key != "user_agent"
+	return key != "client_ip" && key != "client-ip" && key != "user_agent"
 }
 
 func makeSignature(url string, expires int, options SignOptions) string {
