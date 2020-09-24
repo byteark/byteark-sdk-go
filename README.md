@@ -21,7 +21,7 @@ First, import ByteArk's SDK in your code and call ```CreateSigner()``` to create
 
 ``` GO
 import (
-    bytearkSignedURL "gihub.com/byteark/byteark-sdk-go"
+    bytearkSignedURL "github.com/byteark/byteark-sdk-go"
 )
 ```
 The ```CreateSigner()``` required one parameter ```SignerOptions```, which you can use provided ```SignerOptions``` via SDK.
