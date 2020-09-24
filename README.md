@@ -1,4 +1,5 @@
 # ByteArk SDK for GO
+[![Build Status](https://travis-ci.org/byteark/byteark-sdk-go.svg?branch=master)](https://travis-ci.org/byteark/byteark-sdk-go)
 ## Table of contents
 * [Installation](#Installation)
 * [Usage](#Usage)
