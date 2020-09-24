@@ -1,0 +1,10 @@
+language: go
+go:
+  - 1.13.*
+  - 1.14.*
+  - 1.15.*
+  - master
+
+script:
+  - go build ./...
+  - go test ./...
