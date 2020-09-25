@@ -15,7 +15,12 @@ func main() {
 	}
 
 	// Create signer
-	ByteArkSignerSDK.CreateSigner(signerOptions)
+	createSignerError := ByteArkSignerSDK.CreateSigner(signerOptions)
+
+	// Error by CreateSigner should be check before signing process begin
+	if createSignerError != nil {
+		panic(createSignerError)
+	}
 
 	// Create sign options
 	signOptions := ByteArkSignerSDK.SignOptions{

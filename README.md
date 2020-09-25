@@ -33,7 +33,11 @@ signerOptions :=  bytearkSignedURL.SignerOptions{
     AccessSecret: "31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7",
 }
 
-bytearkSignedURL.CreateSigner(signerOptions)
+createSignerErr := bytearkSignedURL.CreateSigner(signerOptions)
+
+if createSignerErr != nil {
+    panic(createSignerErr)
+}
 ```
 
 After create Signer you can call Sign function via SDK. ```Sign()``` function also consume 3 parameters, url, expires and signOptions. ```SignOptions``` is also provided by the SDK. ```Sign()``` return signedURL and error.
