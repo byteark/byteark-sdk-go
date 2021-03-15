@@ -323,3 +323,47 @@ func TestInvalidExpireSignedURL(t *testing.T) {
 		t.Errorf("Verfiy pass, it should faile, %s", verifyErr)
 	}
 }
+
+func TestSignAfterChangeAccessIDAndSecret(t *testing.T) {
+	signer := CurrentSigner()
+
+	signer.SetAccessID("2Aj6Wkge4hi1ZYLp0DBG")
+	signer.SetAccessSecret("31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7")
+
+	signOption := SignOptions{}
+
+	signedURL, err := signer.Sign(
+		"http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+		1514764800,
+		signOption,
+	)
+
+	if err != nil {
+		t.Errorf("Got error from first signer.Sign")
+	}
+
+	expectedSignedURL := "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_Q"
+
+	if signedURL != expectedSignedURL {
+		t.Errorf("Mismacth signedURL before change access ID and Secret")
+	}
+
+	signer.SetAccessID("2Aj6Wkge4hi1ZYLp0DBG")
+	signer.SetAccessSecret("new31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7")
+
+	signedURL, err = signer.Sign(
+		"http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+		1514764800,
+		signOption,
+	)
+
+	if err != nil {
+		t.Errorf("Got error from second signer.Sign")
+	}
+
+	expectedSignedURL = "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=Aig2HEXevVEeF8VwbnlMSg"
+
+	if signedURL != expectedSignedURL {
+		t.Errorf("Mismacth signedURL before change access ID and Secret")
+	}
+}
