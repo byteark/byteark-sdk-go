@@ -55,7 +55,7 @@ func (s Signer) Sign(url string, expires int, options SignOptions) (string, erro
 		expires = int(time.Now().Add(defaultAge).Unix())
 	}
 
-	queryParams, marshalError := qs.Marshal(makeQueryParams(url, expires, options))
+	queryParams, marshalError := qs.Marshal(makeQueryParams(s, url, expires, options))
 
 	if marshalError != nil {
 		return "", marshalError
@@ -90,7 +90,7 @@ func (s Signer) Verify(url string, now int) (bool, error) {
 		}
 	}
 
-	expectedSignature := makeSignature(parsedURLWithoutQuery, parsedExpires, options)
+	expectedSignature := makeSignature(s, parsedURLWithoutQuery, parsedExpires, options)
 
 	if expectedSignature != parsedQuery.Get("x_ark_signature") {
 		return false, errors.New("Invalid signed URL")
@@ -124,9 +124,7 @@ func (s *Signer) GetDefaultAge() int {
 	return s.DefaultAge
 }
 
-func makeQueryParams(url string, expires int, options SignOptions) map[string]string {
-	signer := CurrentSigner()
-
+func makeQueryParams(signer Signer, url string, expires int, options SignOptions) map[string]string {
 	options = validateSignOptions(&options)
 
 	var queryParams = make(map[string]string)
@@ -134,7 +132,7 @@ func makeQueryParams(url string, expires int, options SignOptions) map[string]st
 	queryParams["x_ark_access_id"] = signer.AccessID
 	queryParams["x_ark_auth_type"] = "ark-v2"
 	queryParams["x_ark_expires"] = strconv.Itoa(expires)
-	queryParams["x_ark_signature"] = makeSignature(url, expires, options)
+	queryParams["x_ark_signature"] = makeSignature(signer, url, expires, options)
 
 	for key, value := range options {
 		if shouldOptionsExistsInQuery(key) {
@@ -180,8 +178,8 @@ func shouldOptionValueExistsInQuery(key string) bool {
 	return key != "client_ip" && key != "client-ip" && key != "user_agent"
 }
 
-func makeSignature(url string, expires int, options SignOptions) string {
-	stringToSign := makeStringToSign(url, expires, options)
+func makeSignature(signer Signer, url string, expires int, options SignOptions) string {
+	stringToSign := makeStringToSign(signer, url, expires, options)
 
 	hasher := md5.New()
 	hasher.Write([]byte(stringToSign))
@@ -194,9 +192,7 @@ func makeSignature(url string, expires int, options SignOptions) string {
 	return hashed
 }
 
-func makeStringToSign(url string, expires int, options SignOptions) string {
-	signer := CurrentSigner()
-
+func makeStringToSign(signer Signer, url string, expires int, options SignOptions) string {
 	urlComponents, _ := URL.Parse(url)
 
 	var lineToSign []string
