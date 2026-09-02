@@ -1,0 +1,20 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "ByteArk Signer SDK for Go",
+  "description": "Create, verify, renew and reissue ByteArk ark-v2 signed URLs in Go. One immutable Signer per credential, typed conditions, sentinel errors. v1 (the un-suffixed import path, tags v0.1.x) was a deprecated global singleton.",
+  "folders": [],
+  "excludeFolders": [
+    "examples",
+    "testdata"
+  ],
+  "excludeFiles": [],
+  "rules": [
+    "Import github.com/byteark/byteark-sdk-go/v2 (package bytearksigner); the un-suffixed import path is the deprecated v1 API.",
+    "Construct one *Signer per credential with bytearksigner.New and pass it to callers; a Signer is immutable and safe for concurrent use, so it never needs a package-level variable.",
+    "Sign takes a time.Time expiry (zero means now + default age, 900s) and conditions: PathPrefix, ClientIP, UserAgent, Method, Custom(key, value). The conditions form the URL's policy and are part of the signature.",
+    "ClientIP and UserAgent are masked as 1 on the wire; pass the real request values to Verify only for URLs signed with them.",
+    "Verify, Renew and Reissue return nil when valid; read the cause with errors.Is against the exported Err* sentinels, never by matching error strings.",
+    "Renew refreshes only the expiry of an already-signed URL after its signature verifies with the same secret; Reissue changes the policy and skips that check, so use it on trusted input only.",
+    "v2 form-encodes query values by default and emits the same bytes v1 did; WithSkipURLEncoding(true) is a different wire form, not v1 parity."
+  ]
+}

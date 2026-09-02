@@ -1,0 +1,46 @@
+name: v2
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  v2:
+    name: v2 (go ${{ matrix.go }})
+    runs-on: ubuntu-latest
+    container: golang:${{ matrix.go }}-bookworm
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.24", "1.25", "1.26", "1.27"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: gofmt
+        run: test -z "$(gofmt -l .)"
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: go test
+        run: go test -race -count=1 ./...
+
+      - name: go mod tidy is clean
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          go mod tidy
+          git diff --exit-code -- go.mod go.sum
+
+  examples:
+    name: examples
+    runs-on: ubuntu-latest
+    container: golang:1.27-bookworm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: v2-consumer tests
+        run: go test ./...
+        working-directory: examples/v2-consumer

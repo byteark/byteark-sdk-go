@@ -2,257 +2,141 @@ package bytearksigner
 
 import (
 	"crypto/md5"
-	"encoding/base64"
-	"errors"
+	"crypto/subtle"
 	"fmt"
-	URL "net/url"
-	"sort"
+	"hash"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/pasztorpisti/qs"
 )
 
-// Signer struct for Signer class.
+// DefaultAge is the signed-URL lifetime used when Sign receives a zero expires.
+const DefaultAge = 900 * time.Second
+
+// Signer signs and verifies ark-v2 URLs for one credential pair. It is
+// immutable after New and safe for concurrent use.
 type Signer struct {
-	AccessID        string
-	AccessSecret    string
-	DefaultAge      int
-	SkipURLEncoding bool
+	accessID        string
+	accessSecret    string
+	defaultAge      time.Duration
+	skipURLEncoding bool
+	newHash         func() hash.Hash
 }
 
-// SignerOptions is option on creating new signer
-type SignerOptions struct {
-	AccessID     string
-	AccessSecret string
-	DefaultAge   int
+// Option configures a Signer at construction time.
+type Option func(*Signer) error
+
+// WithDefaultAge sets the lifetime used when Sign is given a zero expires (default 900s).
+func WithDefaultAge(d time.Duration) Option {
+	return func(s *Signer) error {
+		if d <= 0 {
+			return fmt.Errorf("bytearksigner: default age must be positive, got %v", d)
+		}
+		s.defaultAge = d
+		return nil
+	}
 }
 
-// SignOptions for query params inside signedURL
-type SignOptions map[string]string
-
-var currentSigner = newSigner()
-
-func newSigner() *Signer {
-	signer := Signer{
-		DefaultAge:      900,
-		SkipURLEncoding: true,
-	}
-
-	return &signer
+// WithSkipURLEncoding disables URL-encoding of query values. The default
+// (false) form-encodes them per RFC 1738 (space becomes '+', '~' becomes %7E),
+// which is what the CDN expects. Only enable it if you need byte-identical
+// output to the v1 Go SDK's default.
+func WithSkipURLEncoding(skip bool) Option {
+	return func(s *Signer) error { s.skipURLEncoding = skip; return nil }
 }
 
-// CurrentSigner return already create currentSigner
-func CurrentSigner() *Signer {
-	return currentSigner
+// WithHasher replaces the MD5 hash used for signatures. newHash is called once
+// per Sign/Verify. Only use this if your CDN verifier is configured to match.
+func WithHasher(newHash func() hash.Hash) Option {
+	return func(s *Signer) error {
+		if newHash == nil {
+			return fmt.Errorf("bytearksigner: hasher constructor must not be nil")
+		}
+		s.newHash = newHash
+		return nil
+	}
 }
 
-// Sign is main feature function for signer.
-func (s Signer) Sign(url string, expires int, options SignOptions) (string, error) {
-	if expires == 0 {
-		defaultAge, _ := time.ParseDuration(fmt.Sprintf("%ds", s.GetDefaultAge()))
-		expires = int(time.Now().Add(defaultAge).Unix())
+// New creates a Signer. accessSecret is required; accessID may be empty.
+func New(accessID, accessSecret string, opts ...Option) (*Signer, error) {
+	if accessSecret == "" {
+		return nil, ErrMissingSecret
 	}
-
-	queryParams, marshalError := qs.Marshal(makeQueryParams(s, url, expires, options))
-
-	if marshalError != nil {
-		return "", marshalError
+	s := &Signer{
+		accessID:     accessID,
+		accessSecret: accessSecret,
+		defaultAge:   DefaultAge,
+		newHash:      md5.New,
 	}
-
-	return fmt.Sprintf("%s?%s", url, queryParams), nil
-}
-
-// Verify signed url
-func (s Signer) Verify(url string, now int) (bool, error) {
-	if now == 0 {
-		now = int(time.Now().Unix())
-	}
-
-	parsedURL, _ := URL.Parse(url)
-	parsedURLWithoutQuery := fmt.Sprintf("%s://%s%s%s", parsedURL.Scheme, parsedURL.Host, parsedURL.Port(), parsedURL.Path)
-	parsedQuery := parsedURL.Query()
-
-	parsedExpires, _ := strconv.Atoi(parsedQuery.Get("x_ark_expires"))
-	if parsedExpires < now {
-		return false, errors.New("Signed URL is expired")
-	}
-
-	if parsedQuery.Get("x_ark_path_prefix") != "" && !strings.HasPrefix(parsedURL.Path, parsedQuery.Get("x_ark_path_prefix")) {
-		return false, errors.New("Invalid signed URL condition")
-	}
-
-	var options = make(map[string]string)
-	for key := range parsedQuery {
-		if shouldQueryExistsInOptions(key) {
-			options[trimKey(key)] = parsedQuery.Get(key)
+	for _, opt := range opts {
+		if opt == nil {
+			continue
+		}
+		if err := opt(s); err != nil {
+			return nil, err
 		}
 	}
+	return s, nil
+}
 
-	expectedSignature := makeSignature(s, parsedURLWithoutQuery, parsedExpires, options)
-
-	if expectedSignature != parsedQuery.Get("x_ark_signature") {
-		return false, errors.New("Invalid signed URL")
+// Sign returns rawURL with the ark-v2 query string appended. rawURL must not
+// already contain a query string. A zero expires means now + default age.
+func (s *Signer) Sign(rawURL string, expires time.Time, conds ...Condition) (string, error) {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return "", fmt.Errorf("bytearksigner: parse url: %w", err)
 	}
-
-	return true, nil
+	if u.RawQuery != "" || u.ForceQuery {
+		return "", ErrURLHasQuery
+	}
+	if expires.IsZero() {
+		expires = time.Now().Add(s.defaultAge)
+	}
+	exp := expires.Unix()
+	p := newPolicy(conds)
+	sig := signature(s.newHash, stringToSign(u, exp, p, s.accessSecret))
+	q := serializeQuery(queryParams(s.accessID, exp, sig, p), s.skipURLEncoding)
+	return rawURL + "?" + q, nil
 }
 
-// SetAccessID set AccessID to signer
-func (s *Signer) SetAccessID(accessID string) {
-	s.AccessID = accessID
-}
-
-// SetAccessSecret set AccessSecret to signer
-func (s *Signer) SetAccessSecret(accessSecret string) {
-	s.AccessSecret = accessSecret
-}
-
-// SetDefaultAge set DefaultAge as assign value to signer
-func (s *Signer) SetDefaultAge(defaultAge int) {
-	s.DefaultAge = defaultAge
-}
-
-// SetSkipURLEncoding set SkipURLEncoding to signer with input value
-func (s *Signer) SetSkipURLEncoding(skipURLEncoding bool) {
-	s.SkipURLEncoding = skipURLEncoding
-}
-
-// GetDefaultAge return signer current default age
-func (s *Signer) GetDefaultAge() int {
-	return s.DefaultAge
-}
-
-func makeQueryParams(signer Signer, url string, expires int, options SignOptions) map[string]string {
-	options = validateSignOptions(&options)
-
-	var queryParams = make(map[string]string)
-
-	queryParams["x_ark_access_id"] = signer.AccessID
-	queryParams["x_ark_auth_type"] = "ark-v2"
-	queryParams["x_ark_expires"] = strconv.Itoa(expires)
-	queryParams["x_ark_signature"] = makeSignature(signer, url, expires, options)
-
-	for key, value := range options {
-		if shouldOptionsExistsInQuery(key) {
-			if shouldOptionValueExistsInQuery(key) {
-				queryParams[changeKeyToXArkKey(key)] = value
-			} else {
-				queryParams[changeKeyToXArkKey(key)] = "1"
-			}
+// Verify checks that signedURL was produced by this Signer's credentials and is
+// still valid at time at. Conditions that are masked on the wire (ClientIP,
+// UserAgent) and the request Method are not recoverable from the URL, so the
+// caller passes the actual request values as conds; they override any wire value.
+//
+// Returns nil when valid, otherwise an error matching (errors.Is) one of
+// ErrMalformed, ErrExpired, ErrPathPrefix or ErrSignature.
+func (s *Signer) Verify(signedURL string, at time.Time, conds ...Condition) error {
+	u, err := url.Parse(signedURL)
+	if err != nil {
+		return fmt.Errorf("%w: %v", ErrMalformed, err)
+	}
+	q := u.Query()
+	exp, err := strconv.ParseInt(q.Get("x_ark_expires"), 10, 64)
+	if err != nil || q.Get("x_ark_signature") == "" {
+		return ErrMalformed
+	}
+	if at.IsZero() {
+		at = time.Now()
+	}
+	if at.After(time.Unix(exp, 0)) {
+		return ErrExpired
+	}
+	p := policyFromQuery(q)
+	for _, c := range conds {
+		if c != nil {
+			c(p)
 		}
 	}
-
-	keys := make([]string, len(queryParams))
-
-	for k := range queryParams {
-		keys = append(keys, k)
+	if prefix, ok := p.pathPrefix(); ok && !strings.HasPrefix(u.EscapedPath(), prefix) {
+		return ErrPathPrefix
 	}
-
-	return queryParams
-}
-
-func validateSignOptions(s *SignOptions) SignOptions {
-	ns := make(map[string]string)
-	for key, value := range *s {
-		validKey := strings.ReplaceAll(key, "-", "_")
-		ns[validKey] = value
+	bare := *u
+	bare.RawQuery, bare.ForceQuery, bare.Fragment = "", false, ""
+	want := signature(s.newHash, stringToSign(&bare, exp, p, s.accessSecret))
+	if subtle.ConstantTimeCompare([]byte(want), []byte(q.Get("x_ark_signature"))) != 1 {
+		return ErrSignature
 	}
-	return ns
-}
-
-func changeKeyToXArkKey(key string) string {
-	if strings.HasPrefix(key, "x_ark_") {
-		return key
-	}
-	key = strings.ReplaceAll(key, "-", "_")
-	return fmt.Sprintf("x_ark_%s", key)
-}
-
-func shouldOptionsExistsInQuery(optionKey string) bool {
-	return optionKey != "method"
-}
-
-func shouldOptionValueExistsInQuery(key string) bool {
-	return key != "client_ip" && key != "client-ip" && key != "user_agent"
-}
-
-func makeSignature(signer Signer, url string, expires int, options SignOptions) string {
-	stringToSign := makeStringToSign(signer, url, expires, options)
-
-	hasher := md5.New()
-	hasher.Write([]byte(stringToSign))
-	hashed := base64.StdEncoding.EncodeToString(hasher.Sum(nil))
-
-	hashed = strings.ReplaceAll(hashed, "+", "-")
-	hashed = strings.ReplaceAll(hashed, "/", "_")
-	hashed = strings.TrimRight(hashed, "=")
-
-	return hashed
-}
-
-func makeStringToSign(signer Signer, url string, expires int, options SignOptions) string {
-	urlComponents, _ := URL.Parse(url)
-
-	var lineToSign []string
-
-	if options["method"] != "" {
-		lineToSign = append(lineToSign, options["method"])
-	} else {
-		lineToSign = append(lineToSign, "GET")
-	}
-
-	lineToSign = append(lineToSign, urlComponents.Host)
-
-	if options["path_prefix"] != "" {
-		lineToSign = append(lineToSign, options["path_prefix"])
-	} else {
-		lineToSign = append(lineToSign, urlComponents.Path)
-	}
-
-	lineToSign = append(lineToSign, makeCustomPolicyLines(options)...)
-	lineToSign = append(lineToSign, strconv.Itoa(expires))
-	lineToSign = append(lineToSign, signer.AccessSecret)
-
-	return strings.Join(lineToSign, "\n")
-}
-
-func makeCustomPolicyLines(options SignOptions) []string {
-	var op = make(map[string]string)
-	for key, value := range options {
-		if shouldOptionExistsInCustomPolicyLine(key) {
-			op[key] = value
-		}
-	}
-
-	var opKeys []string
-	for k := range op {
-		opKeys = append(opKeys, k)
-	}
-
-	sort.Strings(opKeys)
-
-	var st []string
-
-	for _, k := range opKeys {
-		st = append(st, fmt.Sprintf("%s:%s", k, op[k]))
-	}
-
-	return st
-}
-
-func shouldOptionExistsInCustomPolicyLine(key string) bool {
-	return key != "method" && key != "path_prefix"
-}
-
-func shouldQueryExistsInOptions(key string) bool {
-	return strings.HasPrefix(key, "x_ark_") && key != "x_ark_access_id" && key != "x_ark_auth_type" && key != "x_ark_expires" && key != "x_ark_signature"
-}
-
-func trimKey(key string) string {
-	if strings.HasPrefix(key, "x_ark_") {
-		return strings.TrimPrefix(key, "x_ark_")
-	}
-	return key
+	return nil
 }

@@ -1,0 +1,493 @@
+{
+    "access_id": "2Aj6Wkge4hi1ZYLp0DBG",
+    "access_secret": "31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7",
+    "vectors": [
+        {
+            "name": "basic_get",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {},
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_Q"
+        },
+        {
+            "name": "path_prefix",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/video-objects/QDuxJm02TYqJ/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fvideo-objects%2FQDuxJm02TYqJ%2F&x_ark_signature=334wInm0jKfC6LCm23zndA"
+        },
+        {
+            "name": "client_ip",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "client_ip": "103.253.132.65"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_signature=Gr9T_ZdHDy8l8CCPxpFjNg"
+        },
+        {
+            "name": "client_ip_dashed_key",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "client-ip": "103.253.132.65"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_signature=Gr9T_ZdHDy8l8CCPxpFjNg"
+        },
+        {
+            "name": "client_ip_upper_key",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "Client-IP": "103.253.132.65"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_signature=Gr9T_ZdHDy8l8CCPxpFjNg"
+        },
+        {
+            "name": "user_agent",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=vTCTHqzfhmuFCZ8GBimX-Q&x_ark_user_agent=1"
+        },
+        {
+            "name": "client_ip_user_agent",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_signature=wOfrftPHYHTNXLf8WWAmOQ&x_ark_user_agent=1"
+        },
+        {
+            "name": "client_ip_path_prefix",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "client_ip": "103.253.132.65",
+                "path_prefix": "/video-objects/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_path_prefix=%2Fvideo-objects%2F&x_ark_signature=9UgnpLIHWor3h-0gUNVy3w"
+        },
+        {
+            "name": "method_post",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "POST"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=Exd6x-ZOtGVJ8RDGhKnNAw"
+        },
+        {
+            "name": "method_lower_put",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "put"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=kPyaTQl0-U_ddarBZZPCUQ"
+        },
+        {
+            "name": "custom_option",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "max_resolution": "1080p"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_max_resolution=1080p&x_ark_signature=fmrmswEWBSxwXzUPw9ZGZg"
+        },
+        {
+            "name": "custom_option_dashed",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "viewer-group": "premium"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=SuLfy6GkeoXh7suqWHfzVQ&x_ark_viewer_group=premium"
+        },
+        {
+            "name": "custom_option_origin",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "origin": "https://player.example.com"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_origin=https%3A%2F%2Fplayer.example.com&x_ark_signature=R53gNSen0eZsim1m-XOBPw"
+        },
+        {
+            "name": "tilde_space_utf8",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/a b~c/ü/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fa+b%7Ec%2F%C3%BC%2F&x_ark_signature=jwJwKepZstgC_UzsS5yMdA"
+        },
+        {
+            "name": "skip_encoding_path_prefix",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/video-objects/QDuxJm02TYqJ/"
+            },
+            "skip_url_encoding": true,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=/video-objects/QDuxJm02TYqJ/&x_ark_signature=334wInm0jKfC6LCm23zndA"
+        },
+        {
+            "name": "skip_encoding_tilde",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/a b~c/ü/"
+            },
+            "skip_url_encoding": true,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=/a b~c/ü/&x_ark_signature=jwJwKepZstgC_UzsS5yMdA"
+        },
+        {
+            "name": "host_with_port",
+            "url": "http://inox.qoder.byteark.com:8080/video-objects/x/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {},
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com:8080/video-objects/x/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=Su3I9jkXjvgHutf_7rHSMg"
+        },
+        {
+            "name": "https_root_path",
+            "url": "https://example.cdn.byteark.com/",
+            "expires": 1514764800,
+            "options": {},
+            "skip_url_encoding": false,
+            "signed_url": "https://example.cdn.byteark.com/?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=9hi0GSr8x2BgdwlbMAPhUw"
+        },
+        {
+            "name": "other_expires",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1700000000,
+            "options": {
+                "path_prefix": "/video-objects/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1700000000&x_ark_path_prefix=%2Fvideo-objects%2F&x_ark_signature=gxfR0TZdoAHAg28TQxg8UA"
+        },
+        {
+            "name": "percent_in_path",
+            "url": "http://inox.qoder.byteark.com/video%20objects/x/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {},
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video%20objects/x/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=0HZGLFsiERiOdGV_J28yQg"
+        },
+        {
+            "name": "path_prefix_renewed",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514768400,
+            "options": {
+                "path_prefix": "/video-objects/QDuxJm02TYqJ/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514768400&x_ark_path_prefix=%2Fvideo-objects%2FQDuxJm02TYqJ%2F&x_ark_signature=neqVV__MWPSlEhLFAP6Ymw"
+        },
+        {
+            "name": "client_ip_renewed",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514768400,
+            "options": {
+                "client_ip": "103.253.132.65"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514768400&x_ark_signature=oN2JqhsMdOp0kpYqummXlg"
+        },
+        {
+            "name": "user_agent_renewed",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514768400,
+            "options": {
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514768400&x_ark_signature=0Almm2ARUD3ey8JogpXZOw&x_ark_user_agent=1"
+        },
+        {
+            "name": "custom_option_origin_renewed",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514768400,
+            "options": {
+                "origin": "https://player.example.com"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514768400&x_ark_origin=https%3A%2F%2Fplayer.example.com&x_ark_signature=e4Su2ghnXJMFLqqgYib95Q"
+        },
+        {
+            "name": "host_with_port_renewed",
+            "url": "http://inox.qoder.byteark.com:8080/video-objects/x/playlist.m3u8",
+            "expires": 1514768400,
+            "options": {},
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com:8080/video-objects/x/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514768400&x_ark_signature=vZZ9sf5QBUHUGVKLJXsu0A"
+        },
+        {
+            "name": "rotated_basic_path_prefix",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/video-objects/QDuxJm02TYqJ/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=test-rotated-access-id&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fvideo-objects%2FQDuxJm02TYqJ%2F&x_ark_signature=BT9sNc-PpcY5RMyvRX8Riw",
+            "access_id": "test-rotated-access-id",
+            "access_secret": "test-rotated-secret-not-real"
+        },
+        {
+            "name": "reissue_from",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/video-objects/QDuxJm02TYqJ/",
+                "viewer_group": "vip"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fvideo-objects%2FQDuxJm02TYqJ%2F&x_ark_signature=ig5oo8sUl7y3HcZvpzNoGQ&x_ark_viewer_group=vip"
+        },
+        {
+            "name": "reissue_to",
+            "url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514768400,
+            "options": {
+                "path_prefix": "/video-objects/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514768400&x_ark_path_prefix=%2Fvideo-objects%2F&x_ark_signature=m0_Uf18oS6CPafWOXBz5Pw"
+        },
+        {
+            "name": "playlist_path_prefix_client_ip",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "client_ip": "103.253.132.65"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=QaA4_G7QNL7rOtSVacriog"
+        },
+        {
+            "name": "playlist_full_egress_params",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "viewer_group": "premium",
+                "origin": "1",
+                "playback_origin": "https%3A%2F%2Fplayer.example.com",
+                "max_resolution": "1080p",
+                "referer": "https://player.example.com/",
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)",
+                "resolution": "720p",
+                "geo_allow": "TH,SG",
+                "geo_block": "CN,RU"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=TH%2CSG&x_ark_geo_block=CN%2CRU&x_ark_max_resolution=1080p&x_ark_origin=1&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F&x_ark_playback_origin=https%253A%252F%252Fplayer.example.com&x_ark_referer=https%3A%2F%2Fplayer.example.com%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_resolution=720p&x_ark_signature=uK0vIri2a4OAczPnLyW-lQ&x_ark_user_agent=1&x_ark_viewer_group=premium"
+        },
+        {
+            "name": "playlist_geo_allow_all_exclusive_ip",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "geo_allow": "ALL",
+                "client_ip": "103.253.132.65"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=ALL&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=aB2LC4ie5rKfet1MVDurSA"
+        },
+        {
+            "name": "playlist_export_token",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "export_token": "eyJhbGciOiJIUzI1NiJ9.eyJ2IjoxfQ.sig-token_123"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_export_token=eyJhbGciOiJIUzI1NiJ9.eyJ2IjoxfQ.sig-token_123&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=Nuon4zEddrfTBauERFQFYg"
+        },
+        {
+            "name": "playlist_jwt_path_segment",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/eyJhbGciOiJIUzI1NiJ9.eyJrIjoxfQ.abc-_123/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/eyJhbGciOiJIUzI1NiJ9.eyJrIjoxfQ.abc-_123/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/eyJhbGciOiJIUzI1NiJ9.eyJrIjoxfQ.abc-_123/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2FeyJhbGciOiJIUzI1NiJ9.eyJrIjoxfQ.abc-_123%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=wGBIHGez73JmCRXYD0Le_g"
+        },
+        {
+            "name": "storyboard_cue_path_prefix",
+            "url": "https://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/index-0.jpg",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "geo_allow": "TH,SG",
+                "geo_block": "CN,RU",
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)",
+                "referer": "https://player.example.com/",
+                "max_resolution": "1080p"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "https://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/index-0.jpg?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=TH%2CSG&x_ark_geo_block=CN%2CRU&x_ark_max_resolution=1080p&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2Fstoryboard%2Fsb01%2F&x_ark_referer=https%3A%2F%2Fplayer.example.com%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=trUvd3Xa03ymLD79kozDxA&x_ark_user_agent=1"
+        },
+        {
+            "name": "waveform_no_path_prefix",
+            "url": "https://inox.qoder.byteark.com/streams/QDuxJm02TYqJ/waveform/waveform.json",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "geo_allow": "TH,SG",
+                "geo_block": "CN,RU",
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)",
+                "referer": "https://player.example.com/",
+                "max_resolution": "1080p"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "https://inox.qoder.byteark.com/streams/QDuxJm02TYqJ/waveform/waveform.json?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=TH%2CSG&x_ark_geo_block=CN%2CRU&x_ark_max_resolution=1080p&x_ark_referer=https%3A%2F%2Fplayer.example.com%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=Us05kvx1DYPdGF2g1-sEMw&x_ark_user_agent=1"
+        },
+        {
+            "name": "storyboard_vtt_no_path_prefix",
+            "url": "https://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/index.vtt",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "geo_allow": "TH,SG",
+                "geo_block": "CN,RU",
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)",
+                "referer": "https://player.example.com/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "https://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/index.vtt?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=TH%2CSG&x_ark_geo_block=CN%2CRU&x_ark_referer=https%3A%2F%2Fplayer.example.com%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=KX11O6Wr1MqECgGKqmxxfQ&x_ark_user_agent=1"
+        },
+        {
+            "name": "storyboard_vtt_transform_token",
+            "url": "https://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/tXf0rmT0k3n/index.vtt",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "geo_allow": "TH,SG",
+                "geo_block": "CN,RU",
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)",
+                "referer": "https://player.example.com/"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "https://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/storyboard/sb01/tXf0rmT0k3n/index.vtt?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=TH%2CSG&x_ark_geo_block=CN%2CRU&x_ark_referer=https%3A%2F%2Fplayer.example.com%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=FiInYZmDXWspyQDiAQBkyg&x_ark_user_agent=1"
+        },
+        {
+            "name": "media_info_max_resolution",
+            "url": "https://inox.qoder.byteark.com/streams/QDuxJm02TYqJ/info.json",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ",
+                "geo_allow": "TH,SG",
+                "geo_block": "CN,RU",
+                "client_ip": "103.253.132.65",
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64)",
+                "referer": "https://player.example.com/",
+                "max_resolution": "1080p"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "https://inox.qoder.byteark.com/streams/QDuxJm02TYqJ/info.json?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_client_ip=1&x_ark_expires=1514764800&x_ark_geo_allow=TH%2CSG&x_ark_geo_block=CN%2CRU&x_ark_max_resolution=1080p&x_ark_referer=https%3A%2F%2Fplayer.example.com%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=m8Tor6cWfZuA4J6_88TwRQ&x_ark_user_agent=1"
+        },
+        {
+            "name": "host_port_mpd_no_conditions",
+            "url": "http://inox.qoder.byteark.com:8080/vod/widevine/s3-origin/QDuxJm02TYqJ/playlist.mpd",
+            "expires": 1514764800,
+            "options": {},
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com:8080/vod/widevine/s3-origin/QDuxJm02TYqJ/playlist.mpd?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_signature=-Qb8C2MNRaUYfBsIg9uGuA"
+        },
+        {
+            "name": "custom_key_lower_case",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/720p/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/720p/",
+                "viewer_group": "vip"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/720p/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F720p%2F&x_ark_signature=FP3JHPSEEqn75aBAUnOi3Q&x_ark_viewer_group=vip"
+        },
+        {
+            "name": "custom_key_capitalised",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/720p/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/720p/",
+                "Viewer-Group": "vip"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/720p/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F720p%2F&x_ark_signature=FP3JHPSEEqn75aBAUnOi3Q&x_ark_viewer_group=vip"
+        },
+        {
+            "name": "bumper_host_port_path_prefix",
+            "url": "http://inox.qoder.byteark.com:8080/bumpers/intro/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/bumpers/intro/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com:8080/bumpers/intro/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fbumpers%2Fintro%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=hAiJlVEbNxHfOK8qzQAEkw"
+        },
+        {
+            "name": "bare_param_prepend_base",
+            "url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8",
+            "expires": 1514764800,
+            "options": {
+                "method": "GET",
+                "path_prefix": "/stream-playlist/QDuxJm02TYqJ/",
+                "request_tags": "ark-strm-proj:aBcD1234,ark-strm-cid:QDuxJm02TYqJ"
+            },
+            "skip_url_encoding": false,
+            "signed_url": "http://inox.qoder.byteark.com/stream-playlist/QDuxJm02TYqJ/playlist.m3u8?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG&x_ark_auth_type=ark-v2&x_ark_expires=1514764800&x_ark_path_prefix=%2Fstream-playlist%2FQDuxJm02TYqJ%2F&x_ark_request_tags=ark-strm-proj%3AaBcD1234%2Cark-strm-cid%3AQDuxJm02TYqJ&x_ark_signature=Kgorocbw5lbA0Gi_rRZmBg"
+        }
+    ]
+}

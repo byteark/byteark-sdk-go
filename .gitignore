@@ -1,0 +1,8 @@
+# Build artifacts
+/examples/*/v1-consumer
+/examples/*/v2-consumer
+*.test
+*.out
+
+# OS
+.DS_Store
