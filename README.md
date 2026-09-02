@@ -118,3 +118,7 @@ it trusts the URL it is given, use `Reissue` only on input you trust.
 
 `testdata/reference_vectors.json` holds the frozen reference vectors that every signer in
 this module must reproduce; `go test ./...` checks each one.
+
+## License
+
+Apache License 2.0. See [LICENSE](LICENSE).
